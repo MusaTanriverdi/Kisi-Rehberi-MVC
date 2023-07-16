@@ -1,0 +1,80 @@
+﻿@model TelReh.Models.KisiModel.KisiEkleViewModel
+
+@{
+    ViewData["Title"] = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Ekle</h1>
+
+<form class="form-horizontal" method="post" action="/Kisi/Ekle/">
+    <div class="form-group">
+        @*<label>Ad</label>*@
+        @*@Html.Label("Ad")*@
+        @Html.LabelFor(x => x.Kisi.Ad)
+        <input type="text" class="form-control" name="Kisi.Ad" style='width: 300px;' required />
+        @*@Html.TextBox("Ad", null, new{ @class="form-control"})*@
+        @*@Html.TextBoxFor(x => x.Kisi.Ad, null, new{ @class="form-control"})*@
+    </div>
+    <div class="form-group">
+        @*<label>Soyad</label>*@
+        @Html.LabelFor(x => x.Kisi.Soyad)
+        @*<input type="text" class="form-control" name="Soyad"/>*@
+        @*@Html.Label("Soyad")*@
+        @Html.TextBoxFor(x => x.Kisi.Soyad, null, new{ @class="form-control", style="width: 300px;"})
+        @*@Html.TextBox("Soyad", null, new{ @class="form-control"})*@
+    </div>
+    <div class="form-group">
+        @*<label>Ev Telefonu</label>*@
+        @*@Html.Label("Ev Telefonu")*@
+        @Html.LabelFor(x => x.Kisi.EvTelefon)
+        @*<input type="text" class="form-control" name="EvTelefon"/>*@
+        @*@Html.TextBox("EvTelefon", null, new{ @class="form-control"})*@
+        @Html.TextBoxFor(x => x.Kisi.EvTelefon, null, new{ @class="form-control", id ="evtel", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @*<label>Cep Telefonu</label>*@
+        @*//@Html.Label("Cep Telefonu")*@
+        @Html.LabelFor(x => x.Kisi.CepTelefon)
+        <input type="text" class="form-control" id="telno1" name="Kisi.CepTelefon" style="width: 300px;" required />
+        @*//@Html.TextBox("CepTelefon", null, new{ @class="form-control"})*@
+        @*@Html.TextBoxFor(x => x.Kisi.CepTelefon, null, new{ @class="form-control"})*@
+    </div>
+    <div class="form-group">
+        @*<label>Is Telefonu</label>*@
+        @*//@Html.Label("Is Telefonu")*@
+        @Html.LabelFor(x => x.Kisi.IsTelefon)
+        @*<input type="text" class="form-control" name="IsTelefon"/>*@
+        @*//@Html.TextBox("IsTelefon", null, new{ @class="form-control"})*@
+        @Html.TextBoxFor(x => x.Kisi.IsTelefon, null, new{ @class="form-control", id="istel", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @*<label>Email Adresi</label>*@
+        @*//@Html.Label("Email Adres")*@
+        @Html.LabelFor(x => x.Kisi.EmailAdres)
+        <input type="email" class="form-control" name="Kisi.EmailAdres" style='width: 300px;' required />
+        @*//@Html.TextBox("EmailAdres", null, new{ @class="form-control"})*@
+        @*@Html.TextBoxFor(x => x.Kisi.EmailAdres, null, new{ @class="form-control"})*@
+    </div>
+    <div class="form-group">
+        @*<label>Adres</label>*@
+        @*//@Html.Label("Adres")*@
+        @Html.LabelFor(x => x.Kisi.Adres)
+        @*<textarea class="form-control" name="Adres" rows="4"></textarea>*@
+        @*//@Html.TextArea("Adres", null, new{ @class="form-control", @rows=4 })*@
+        @Html.TextBoxFor(x => x.Kisi.Adres, null, new{ @class="form-control", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.SehirId)
+        @*<select class="form-control" name="SehirId">
+        <option value="1">İstanbul</option>
+        <option value="2">Yalova</option>
+        <option value="3">Ankara</option>
+        <option value="4">Bursa</option>
+        </select>*@
+        @Html.DropDownListFor(X => X.Kisi.SehirId, new SelectList(Model.Sehirler,"Id","SehirAdi"),new {@class = "form-control", style="width: 300px;"})
+
+    </div>
+
+    <input type="submit" class="buttonkaydet" value="Kaydet" />
+</form>

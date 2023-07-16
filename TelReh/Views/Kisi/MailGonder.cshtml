@@ -1,0 +1,27 @@
+﻿@model TelReh.Models.Entities.Kisi
+@{
+    ViewData["Title"] = "MailGonder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Ad @Model.Soyad Kişisine Mail Gönder</h1>
+
+<form action="/Kisi/MailGonder/" method="post">
+    <div class="form-group">
+        <label>Mail Adres</label>
+        <input type="text" class="form-control" value="@Model.EmailAdres" name="MailAdres" style="width: 300px;" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Başlık</label>
+        <input type="text" class="form-control"  name="Baslik" style="width: 300px;" />
+    </div>
+
+    <div class="form-group">
+        <label>Mesaj</label>
+        <input type="text" class="form-control"  name="Mesaj" style="width: 300px;" />
+    </div>
+
+    <button type="submit" class="buttonmaill">Gönder</button>
+</form>
+

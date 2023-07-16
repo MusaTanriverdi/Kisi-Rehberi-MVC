@@ -1,0 +1,61 @@
+﻿@model TelReh.Models.KisiModel.KisiGuncelleViewModel
+@{
+    ViewData["Title"] = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kişi Güncelle</h1>
+
+@*<form class="form-horizontal" method="post" action="/Kisi/Guncelle/">*@
+
+@using (Html.BeginForm("Guncelle","Kisi",FormMethod.Post,new{@class="form-horizontal"}))
+{
+    
+
+
+    @Html.HiddenFor(x => x.Kisi.Id)
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.Kisi.Ad)
+        @Html.TextBoxFor(x => x.Kisi.Ad, null, new{ @class="form-control", required="required", style="width: 300px;"})
+        @*<input type="text" class="form-control" name="Kisi.Ad" required/>*@
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.Kisi.Soyad)
+        @Html.TextBoxFor(x => x.Kisi.Soyad, null, new{ @class="form-control", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.EvTelefon)
+        @Html.TextBoxFor(x => x.Kisi.EvTelefon, null, new{ @class="form-control", style="width: 300px;", Id="evtel", type="tel"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.CepTelefon)
+        @*<input type="text" class="form-control" name="Kisi.CepTelefon" placeholder="+90-(XXX)-XXX-XXXX" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" required/>*@
+        @Html.TextBoxFor(x => x.Kisi.CepTelefon, null, new{ @class="form-control" , required="required", style="width: 300px;", type="tel", id="telno1"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.IsTelefon)
+        @Html.TextBoxFor(x => x.Kisi.IsTelefon, null, new{ @class="form-control", style="width: 300px;", Id="istel", type="tel"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.EmailAdres)
+        @*<input type="email" class="form-control" name="Kisi.EmailAdres" required />*@
+        @Html.TextBoxFor(x => x.Kisi.EmailAdres, null, new{ @class="form-control", required="required", type="email", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.Adres)
+        @Html.TextBoxFor(x => x.Kisi.Adres, null, new{ @class="form-control", style="width: 300px;"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kisi.SehirId)
+        @*@Html.DropDownListFor(X => X.Kisi.SehirId, ViewBag.Sehirler as SelectList,new {@class = "form-control"})*@
+        @Html.DropDownListFor(X => X.Kisi.SehirId, new SelectList(Model.Sehirler,"Id","SehirAdi"),new {@class = "form-control", style="width: 300px;"})
+    
+    </div>
+
+    <input type="submit" class="buttonguncellee" value="Güncelle" />
+@*</form>*@
+
+}
+

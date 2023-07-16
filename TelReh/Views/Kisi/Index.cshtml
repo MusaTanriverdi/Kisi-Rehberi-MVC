@@ -1,0 +1,104 @@
+﻿@model TelReh.Models.KisiModel.KisiIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+
+<h2 style="text-align:center">Telefon Rehberi</h2>
+
+
+
+<br />
+<br />
+
+<script src="sweetalert2.all.min.js"></script>
+
+<table class="table">
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+
+        <th>Cep Telefonu</th>
+
+        <th>Email Adres</th>
+        <th>Mail Gönder</th>
+
+        <th>Şehir</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var kisi in Model.Kisiler)
+    {
+        <tr>
+            <td>@kisi.Ad</td>
+            <td>@kisi.Soyad</td>
+
+            <td>@kisi.CepTelefon</td>
+
+            <td>@kisi.EmailAdres</td>
+            @*<th>@Html.ActionLink("Mail Gonder","MailGonder",new {id = kisi.Id})</th>*@
+            <td> <a asp-controller="Kisi" asp-action="MailGonder" asp-route-id="@kisi.Id" class="buttonmail"> Mail gönder</a></td>
+
+            <td>@kisi.Sehir.SehirAdi</td>
+            <td>
+
+                @*<a href="/Kisi/Guncelle/@kisi.Id">Güncelle</a>*@
+                @Html.ActionLink("Güncelle", "Guncelle", new { id = kisi.Id}, new {@class="buttonguncelle"}) |
+                @Html.ActionLink("Detay", "Detay", new { id = kisi.Id}, new {@class="buttondetay"}) |
+                <button type="button" onclick="confirmDelete(@kisi.Id)">Sil</button>
+
+
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Yeni Kişi", "Ekle", new {}, new {@class="buttonekle"})
+
+<script>
+
+
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Silmek İstediğinizden Emin Misiniz?',
+            text: "Silme İşlemini Geri Alamazsınız!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/Kisi/Sil/" + id,
+                    type: "GET",
+
+                    success: function() {
+                        Swal.fire({
+                            title: 'Kayıt Başarıyla Silindi !',
+                            text: 'Başarılı',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Tamam'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        Swal.fire("Error deleting!", "Please try again", "error");
+                    }
+                });
+            }
+        })
+
+
+
+
+
+    }
+
+</script>
